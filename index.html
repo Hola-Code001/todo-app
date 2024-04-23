@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do</title>
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/3587aca0ed.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1>To-<span>Do</span></h1>
+    </header>
+    <main>
+      <div class="input-field flex-item">
+        <input type="text" placeholder="Create a new Todo" id="add-task" />
+        <button class="add-btn">
+          Add Task <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+
+      <div class="task-info flex-item">
+        <div class="total-task flex-item">
+          <h2 class="">Task Created</h2>
+          <span class="total-count">0</span>
+        </div>
+        <div class="complete-task flex-item">
+          <h2 class="">Completed</h2>
+          <div>
+            <span class="complete-count">0</span>
+            <span class="">of</span>
+            <span class="total-count">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="list-container"></div>
+    </main>
+    <div class="notification-container"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
