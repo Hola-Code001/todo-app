@@ -42,12 +42,12 @@ if (localStorage.getItem("list")) {
         completeCount++;
         completeTask.textContent = completeCount;
 
-        showPassNotification("Task Completed.");
+        showNotification("Task Completed.", "fa-thumbs-up", "complete-icon");
       } else {
         todoText.classList.remove("done");
         completeCount--;
         completeTask.textContent = completeCount;
-        showPassNotification("Task Undo.");
+        showNotification("Task Undo.", "fa-thumbs-up", "complete-icon");
       }
     });
 
@@ -57,7 +57,7 @@ if (localStorage.getItem("list")) {
         todoEl.remove();
       }, 250);
 
-      showErrorNotification("Task Deleted.");
+      showNotification("Task deleted.", "fa-circle-info", "delete-icon");
 
       if (checkbox.checked) {
         completeCount--;
@@ -102,7 +102,7 @@ addTaskButton.addEventListener("click", () => {
 
   if (filterList) {
     let content = `"${input.value}" has already been added.`;
-    showErrorNotification(content);
+    showNotification(content, "fa-circle-info", "delete-icon");
 
     return;
   }
@@ -135,7 +135,7 @@ addTaskButton.addEventListener("click", () => {
   });
 
   localStorage.setItem("list", JSON.stringify(todoList));
-  showPassNotification("Task added.");
+  showNotification("Task added.", "fa-thumbs-up", "complete-icon");
 
   checkbox.addEventListener("click", () => {
     if (checkbox.checked) {
@@ -143,12 +143,12 @@ addTaskButton.addEventListener("click", () => {
       completeCount++;
       completeTask.textContent = completeCount;
 
-      showPassNotification("Task Completed.");
+      showNotification("Task Completed.", "fa-thumbs-up", "complete-icon");
     } else {
       todoText.classList.remove("done");
       completeCount--;
       completeTask.textContent = completeCount;
-      showPassNotification("Task Undo.");
+      showNotification("Task undo.", "fa-thumbs-up", "complete-icon");
     }
   });
 
@@ -158,7 +158,7 @@ addTaskButton.addEventListener("click", () => {
       todoEl.remove();
     }, 250);
 
-    showErrorNotification("Task Deleted.");
+    showNotification("Task deleted.", "fa-circle-info", "delete-icon");
 
     totalCount--;
     totalTask.forEach((task) => {
@@ -186,7 +186,7 @@ addTaskButton.addEventListener("click", () => {
   input.value = "";
 });
 
-function showPassNotification(content) {
+function showNotification(content, classOne, classTwo) {
   const el = document.createElement("div");
   const text = document.createElement("p");
   const icon = document.createElement("i");
@@ -196,25 +196,9 @@ function showPassNotification(content) {
 
   el.classList.add("notification");
   text.textContent = content;
-  icon.classList.add("fa-solid", "fa-thumbs-up");
-  icon.classList.add("complete-icon");
-
-  setTimeout(() => {
-    el.remove();
-  }, 5000);
-}
-
-function showErrorNotification(content) {
-  const el = document.createElement("div");
-  const text = document.createElement("p");
-  const icon = document.createElement("i");
-  document.querySelector(".notification-container").appendChild(el);
-  el.appendChild(icon);
-  el.appendChild(text);
-
-  el.classList.add("notification");
-  text.textContent = content;
-  icon.classList.add("fa-solid", "fa-circle-info", "delete-icon");
+  icon.classList.add("fa-solid");
+  icon.classList.add(classOne);
+  icon.classList.add(classTwo);
 
   setTimeout(() => {
     el.remove();
